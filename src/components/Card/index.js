@@ -8,14 +8,14 @@ export default function Card() {
   const [recovered, setRecovered] = useState(0);
   const [deaths, setDeaths] = useState(0);
 
-  useEffect(() => {
-    async function getDatasCovid19() {
-      const { data } = await api.get();
-      setConfirmed(data.confirmed.value);
-      setRecovered(data.recovered.value);
-      setDeaths(data.deaths.value);
-    }
+  async function getDatasCovid19() {
+    const { data } = await api.get();
+    setConfirmed(data.confirmed.value);
+    setRecovered(data.recovered.value);
+    setDeaths(data.deaths.value);
+  }
 
+  useEffect(() => {
     getDatasCovid19();
   }, []);
 
