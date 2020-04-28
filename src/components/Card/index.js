@@ -1,23 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import CountUp from 'react-countup';
 import api from '../../services/api';
+import CountriesContext from '../../context/countriesContext';
 import { Container, Painel } from './styles';
 
 export default function Card() {
   const [confirmed, setConfirmed] = useState(0);
   const [recovered, setRecovered] = useState(0);
   const [deaths, setDeaths] = useState(0);
+  const [lastUpdate, setLastUpdate] = useState('');
 
-  async function getDatasCovid19() {
-    const { data } = await api.get();
+  const { countrie } = useContext(CountriesContext);
+
+  const getDatasCovid19 = useCallback(async () => {
+    const urlCountrie = countrie ? `countries/${countrie}` : '';
+
+    const { data } = await api.get(urlCountrie);
     setConfirmed(data.confirmed.value);
     setRecovered(data.recovered.value);
     setDeaths(data.deaths.value);
-  }
+    setLastUpdate(data.lastUpdate);
+  });
 
   useEffect(() => {
     getDatasCovid19();
-  }, []);
+  }, [countrie]);
 
   return (
     <>
@@ -31,6 +38,9 @@ export default function Card() {
             className="countUp"
           />
           <p>Número de casos confirmados</p>
+          <p className="updateDate">
+            Atualizado em {new Date(lastUpdate).toLocaleDateString()}
+          </p>
         </Painel>
         <Painel colorBorderBottom="green">
           <CountUp
@@ -41,6 +51,9 @@ export default function Card() {
             className="countUp"
           />
           <p>Número de pessoas recuperadas</p>
+          <p className="updateDate">
+            Atualizado em {new Date(lastUpdate).toLocaleDateString()}
+          </p>
         </Painel>
         <Painel colorBorderBottom="red">
           <CountUp
@@ -51,6 +64,9 @@ export default function Card() {
             className="countUp"
           />
           <p>Número de mortos</p>
+          <p className="updateDate">
+            Atualizado em {new Date(lastUpdate).toLocaleDateString()}
+          </p>
         </Painel>
       </Container>
     </>

@@ -19,6 +19,11 @@ export const Painel = styled.div`
     font-size: 20px;
   }
 
+  .updateDate {
+    font-size: 20px;
+    color: #a8a8b3;
+  }
+
   .countUp {
     font-size: 32px;
     font-weight: bold;

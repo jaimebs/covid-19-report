@@ -14,6 +14,7 @@ export const Select = styled.select`
   font-family: 'Baloo Bhaina 2', cursive;
   font-size: 18px;
   border-radius: 2px;
+  font-weight: bold;
 
   @media (max-width: 1217px) {
     margin: 0 30px;

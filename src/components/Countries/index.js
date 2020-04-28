@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import api from '../../services/api';
+import CountriesContext from '../../context/countriesContext';
 import { Container, Select } from './styles';
 
 export default function Countries() {
   const [dataCountries, setDataCountries] = useState([]);
+  const { setCountrie } = useContext(CountriesContext);
+
   useEffect(() => {
     async function getDatasCountries() {
       const { data } = await api.get('countries');
@@ -12,9 +15,9 @@ export default function Countries() {
     getDatasCountries();
   }, []);
 
-  function handleCountries() {
-    // console.log(e.target.value);
-  }
+  const handleCountries = useCallback(e => {
+    setCountrie(e.target.value);
+  });
 
   return (
     <>
