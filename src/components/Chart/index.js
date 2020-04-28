@@ -68,8 +68,8 @@ export default function Chart() {
   ) : null;
 
   return (
-    <>
-      <Container>{country ? barChart : lineChart}</Container>
-    </>
+    <Container>
+      <div>{country ? barChart : lineChart}</div>
+    </Container>
   );
 }
