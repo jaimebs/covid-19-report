@@ -18,6 +18,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 - [React](https://pt-br.reactjs.org/)
 - [Styled Components](https://styled-components.com/)
 - [Axios](https://github.com/axios/axios)
+- [Context com UseContext](https://pt-br.reactjs.org/docs/hooks-reference.html#usecontext)
 
 ### :recycle: Como instalar
 
