@@ -10,21 +10,30 @@ export default function Card() {
   const [deaths, setDeaths] = useState(0);
   const [lastUpdate, setLastUpdate] = useState('');
 
-  const { countrie } = useContext(CountriesContext);
+  const {
+    country,
+    setConfirmedCtx,
+    setRecoveredCtx,
+    setDeathsCtx,
+  } = useContext(CountriesContext);
 
   const getDatasCovid19 = useCallback(async () => {
-    const urlCountrie = countrie ? `countries/${countrie}` : '';
+    const urlCountrie = country ? `countries/${country}` : '';
 
     const { data } = await api.get(urlCountrie);
     setConfirmed(data.confirmed.value);
     setRecovered(data.recovered.value);
     setDeaths(data.deaths.value);
     setLastUpdate(data.lastUpdate);
-  });
+
+    setConfirmedCtx(data.confirmed.value);
+    setRecoveredCtx(data.recovered.value);
+    setDeathsCtx(data.deaths.value);
+  }, [country, setConfirmedCtx, setRecoveredCtx, setDeathsCtx]);
 
   useEffect(() => {
     getDatasCovid19();
-  }, [countrie]);
+  }, [country, getDatasCovid19]);
 
   return (
     <>

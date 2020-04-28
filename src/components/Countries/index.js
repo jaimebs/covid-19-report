@@ -5,7 +5,7 @@ import { Container, Select } from './styles';
 
 export default function Countries() {
   const [dataCountries, setDataCountries] = useState([]);
-  const { setCountrie } = useContext(CountriesContext);
+  const { setCountry } = useContext(CountriesContext);
 
   useEffect(() => {
     async function getDatasCountries() {
@@ -15,9 +15,12 @@ export default function Countries() {
     getDatasCountries();
   }, []);
 
-  const handleCountries = useCallback(e => {
-    setCountrie(e.target.value);
-  });
+  const handleCountries = useCallback(
+    e => {
+      setCountry(e.target.value);
+    },
+    [setCountry],
+  );
 
   return (
     <>

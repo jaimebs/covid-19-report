@@ -4,10 +4,24 @@ const CountriesContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 export const CountriesProvider = ({ children }) => {
-  const [countrie, setCountrie] = useState();
+  const [country, setCountry] = useState();
+  const [confirmedCtx, setConfirmedCtx] = useState(0);
+  const [recoveredCtx, setRecoveredCtx] = useState(0);
+  const [deathsCtx, setDeathsCtx] = useState(0);
 
   return (
-    <CountriesContext.Provider value={{ countrie, setCountrie }}>
+    <CountriesContext.Provider
+      value={{
+        country,
+        setCountry,
+        confirmedCtx,
+        setConfirmedCtx,
+        recoveredCtx,
+        setRecoveredCtx,
+        deathsCtx,
+        setDeathsCtx,
+      }}
+    >
       {children}
     </CountriesContext.Provider>
   );
