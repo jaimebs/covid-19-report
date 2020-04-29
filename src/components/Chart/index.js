@@ -1,14 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Line, Bar } from 'react-chartjs-2';
 import api from '../../services/api';
-import CountriesContext from '../../context/countriesContext';
+import { useCountries } from '../../context/countriesContext';
 import { Container } from './styles';
 
 export default function Chart() {
   const [dayli, setDaily] = useState([]);
-  const { country, confirmedCtx, recoveredCtx, deathsCtx } = useContext(
-    CountriesContext,
-  );
+  const { country, confirmedCtx, recoveredCtx, deathsCtx } = useCountries();
 
   useEffect(() => {
     async function fetchDailyData() {

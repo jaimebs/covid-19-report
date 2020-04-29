@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 
 const CountriesContext = createContext();
 
@@ -26,5 +26,10 @@ export const CountriesProvider = ({ children }) => {
     </CountriesContext.Provider>
   );
 };
+
+export function useCountries() {
+  const context = useContext(CountriesContext);
+  return context;
+}
 
 export default CountriesContext;

@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import api from '../../services/api';
-import CountriesContext from '../../context/countriesContext';
+import { useCountries } from '../../context/countriesContext';
 import { Container, Select } from './styles';
 
 export default function Countries() {
   const [dataCountries, setDataCountries] = useState([]);
-  const { setCountry } = useContext(CountriesContext);
+  const { setCountry } = useCountries();
 
   useEffect(() => {
     async function getDatasCountries() {

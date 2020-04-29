@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import CountUp from 'react-countup';
 import api from '../../services/api';
-import CountriesContext from '../../context/countriesContext';
+import { useCountries } from '../../context/countriesContext';
 import { Container, Painel } from './styles';
 
 export default function Card() {
@@ -15,7 +15,7 @@ export default function Card() {
     setConfirmedCtx,
     setRecoveredCtx,
     setDeathsCtx,
-  } = useContext(CountriesContext);
+  } = useCountries();
 
   const getDatasCovid19 = useCallback(async () => {
     const urlCountrie = country ? `countries/${country}` : '';
